@@ -1,0 +1,20 @@
+apiVersion: enterprises.upmc.com/v1
+kind: ElasticsearchCluster
+metadata:
+  name: efk-es-cluster
+  namespace: elasticsearch
+spec:
+  kibana:
+    image: upmcenterprises/kibana:5.3.1
+  cerebro:
+    image: upmcenterprises/cerebro:0.6.8
+  elastic-search-image: upmcenterprises/docker-elasticsearch-kubernetes:5.6.4_1
+  client-node-replicas: 3
+  master-node-replicas: 3
+  data-node-replicas: 3
+  network-host: 0.0.0.0
+  zones: []
+  data-volume-size: 10Gi
+  java-options: "-Xms512m -Xmx512m"
+  storage:
+    type: pd-standard
